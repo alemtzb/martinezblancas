@@ -1,53 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martínez Blancas Lab</title>
+    <title>Academic Lab Portfolio Canvas</title>
+    <link href="https://cloudflare.com" rel="stylesheet" type="text/css">
+    <link class="favicon" rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #090d16;
+            color: #f8fafc;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        h1 {
+            font-size: 75px;
+        }
+
+        .minimal-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(9, 13, 22, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px 0;
+        }
+
+        .nav-link-custom {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            color: #f8fafc;
+            border-color: #3b82f6;
+        }
+
+        /* 
+           THE BUG-FREE HORIZONTAL ENGINE
+           Uses native Scroll Snapping. This keeps sections strictly separated, 
+           ensuring your text titles never compress or disappear.
+        */
+        /* 1. MASTER VIEWPORT: Houses the horizontal layout runway */
+        .parallax-wrapper {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: auto;
+            /* Disabled default animation to let JS glide smoothly */
+        }
+
+        .parallax-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 2. RIGID SECTIONS: Keeps text cards isolated and centered */
+        .parallax-group {
+            flex: 0 0 100vw;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Centers the graphics while letting them track at independent speeds */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: center;
+            background-position-x: 0%;
+            /* Initial baseline position variable */
+        }
+
+        /* 3. YOUR 5 BACKGROUND ENVIRONMENTS */
+        .bg-img-home {
+            background-image: url('/plantinteractionsecology/resources/superbloom1.jpeg');
+        }
+
+        .bg-img-research {
+            background-image: url('/plantinteractionsecology/resources/seedbank.jpeg');
+        }
+
+        .bg-img-people {
+            background-image: url('/plantinteractionsecology/resources/labpeople.jpeg');
+        }
+
+        .bg-img-publications {
+            background-image: url('/plantinteractionsecology/resources/landscape.jpeg');
+        }
+
+        .bg-img-join {
+            background-image: url('/plantinteractionsecology/resources/labpeople2.jpeg');
+        }
+
+        /* Content cards stay completely safe and un-scrunched */
+        .content-card {
+            background-color: rgba(15, 23, 42, 0.85);
+            padding: 3.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 650px;
+            width: 90%;
+            z-index: 10;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Martínez Blancas Lab</h1>
-    <p>Plant Interactions Ecology</p>
-</header>
+    <nav class="minimal-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="research.html">Research</a>
-    <a href="people.html">People</a>
-    <a href="publications.html">Publications</a>
-    <a href="join.html">Join Us!</a>
-</nav>
+            <div class="d-flex gap-8">
+                <span class="fw-bold tracking-wider text-white nav-link-custom active"
+                    data-target="panel-home">Home</span>
+                <span class="nav-link-custom" data-target="panel-research">Research</span>
+                <span class="nav-link-custom" data-target="panel-people">People</span>
+                <span class="nav-link-custom" data-target="panel-publications">Publications</span>
+                <span class="nav-link-custom" data-target="panel-join">Join Us</span>
+            </div>
+        </div>
+    </nav>
 
+    <div class="parallax-wrapper" id="scrollMaster">
 
-<section>
-    <h2>Welcome!</h2>
+        <!-- 1. HOME -->
+        <div class="parallax-group bg-img-home" id="panel-home">
+            <div class="container text-center px-4">
+                <h1 class="display-2 fw-bold text-white mb-3">Plant Interactions Ecology</h1>
+                <h3 class="lead text-secondary max-w-xl mx-auto mb-4">From the Lab of Dr. Alejandra Martinez Blancas
+                </h3>
+            </div>
+        </div>
 
-    <p>
-        The Martínez Blancas Lab focuses on understanding the role of
-        species interactions and abiotic factors in maintaining diversity
-        in plant communities. We work at the intersection of population and
-        community ecology and use quantitative methods coupled with field
-        data to develop tools for understanding ecological processes.
-        We are also committed to grassland conservation.
-    </p>
-</section>
+        <!-- 2. RESEARCH -->
+        <div class="parallax-group bg-img-research" id="panel-research">
+            <div class="content-card text-center">
+                <h2 class="display-5 fw-bold text-white mb-4">Our Research</h2>
+                <p class="text-muted fs-5 mb-0">The Martínez Blancas Lab focuses on understanding the role of
+                    species interactions and abiotic factors in maintaining diversity
+                    in plant communities. We work at the intersection of population and
+                    community ecology and use quantitative methods coupled with field
+                    data to develop tools for understanding ecological processes.
+                    We are also committed to grassland conservation.</p>
+            </div>
+        </div>
 
-<section>
-    <h2>News</h2>
+        <!-- 3. PEOPLE -->
+        <div class="parallax-group bg-img-people" id="panel-people">
+            <div class="content-card">
+                <h2 class="display-5 fw-bold text-white text-center mb-4">Meet the Team</h2>
+                <div class="row text-center mt-3 g-3">
+                    <div class="col-6">
+                        <p class="mb-0 text-white fw-semibold">Dr. Alejandra Martinez Blancas</p><span
+                            class="text-muted small">Principal Investigator</span>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-0 text-white fw-semibold">Sarah Jenkins</p><span class="text-muted small">Lead
+                            Researcher</span>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-0 text-white fw-semibold">Elena Rostova</p><span class="text-muted small">PhD
+                            Candidate</span>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-0 text-white fw-semibold">Marcus Chen</p><span class="text-muted small">Research
+                            Assistant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <ul>
-        <li>August 2026: Website launched.</li>
-    </ul>
-</section>
+        <!-- 4. PUBLICATIONS -->
+        <div class="parallax-group bg-img-publications" id="panel-publications">
+            <div class="content-card">
+                <h2 class="display-5 fw-bold text-white text-center mb-4">Relevant Publications</h2>
+                <ul class="list-unstyled text-muted d-flex flex-column gap-3 mb-0">
+                    <li><strong class="text-white">Publication:</strong> Title</li>
+                    <li><strong class="text-white">Publication:</strong> Title</li>
+                    <li><strong class="text-white">Publication:</strong> Title</li>
+                </ul>
+            </div>
+        </div>
 
-<footer>
-    <p>&copy; 2026 Martínez Blancas Lab</p>
-</footer>
+        <!-- 5. JOIN -->
+        <div class="parallax-group bg-img-join" id="panel-join">
+            <div class="content-card">
+                <h2 class="display-5 fw-bold text-white text-center mb-3">Join Us!</h2>
+                <p class="text-muted text-center mb-4">We are searching for funded PostDocs and Graduate Researchers
+                    interested in plant ecology.</p>
+                <form>
+                    <div class="mb-3">
+                        <input type="email"
+                            class="form-control bg-dark text-white border-secondary border-opacity-50 py-2"
+                            placeholder="Institutional Email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Submit Application</button>
+                </form>
+            </div>
+        </div>
 
+    </div>
+
+    <script src="https://cloudflare.com"></script>
+    <script>
+        const container = document.getElementById('scrollMaster');
+        const navLinks = document.querySelectorAll('.nav-link-custom');
+
+        // Virtual Scroll Targets for fluid wheel calculation
+        let currentX = 0;
+        let targetX = 0;
+        const easeFactor = 0.08; // Control scroll smoothness (lower is smoother)
+
+        // 1. FIXED MOUSEWHEEL LISTENER: Translates vertical clicks sideways fluidly
+        window.addEventListener('wheel', (e) => {
+            // Only run if the cursor is interacting with the canvas elements
+            if (Math.abs(e.deltaY) > 0) {
+                e.preventDefault();
+                // Bound targets to prevent scrolling past the edge of the 5 panels
+                const maxScroll = container.scrollWidth - window.innerWidth;
+                targetX = Math.max(0, Math.min(maxScroll, targetX + e.deltaY * 1.2));
+            }
+        }, { passive: false });
+
+        // 2. NAV LINK NAVIGATION: Computes target metrics on menu click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const targetId = link.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetX = targetElement.offsetLeft;
+                }
+            });
+        });
+
+        // 3. CORE ANIMATION ENGINE: Updates screen frame updates via requestAnimationFrame
+        function updateFrame() {
+            // Interpolate current scroll position toward our wheel target
+            currentX += (targetX - currentX) * easeFactor;
+            container.scrollLeft = currentX;
+
+            let currentPanel = 'panel-home';
+            const midViewportFocus = currentX + (window.innerWidth / 2);
+
+            // Process horizontal parallax math for each block
+            document.querySelectorAll('.parallax-group').forEach(panel => {
+                // How far has this specific section moved through the screen window?
+                const relativeOffset = currentX - panel.offsetLeft;
+
+                /* 
+                   THE PARALLAX MATRIX FIX: 
+                   We shift the background texture left and right inside its section boundaries. 
+                   The 0.15 modifier forces the image to track slower than the text cards.
+                */
+                const pxOffset = relativeOffset * 0.25;
+                panel.style.backgroundPositionX = `calc(50% + ${pxOffset}px)`;
+
+                // Track active panels for the header indicator menu
+                if (midViewportFocus >= panel.offsetLeft && midViewportFocus < (panel.offsetLeft + panel.offsetWidth)) {
+                    currentPanel = panel.id;
+                }
+            });
+
+            // Update link UI indicator states
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-target') === currentPanel) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Loop the animation engine continuously
+            window.requestAnimationFrame(updateFrame);
+        }
+
+        // Fire up the continuous layout tracking frame
+        window.requestAnimationFrame(updateFrame);
+    </script>
 </body>
+
 </html>
