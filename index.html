@@ -127,6 +127,32 @@
             width: 90%;
             z-index: 10;
         }
+
+        .citation-entry {
+            padding-left: 2rem;
+            /* 1. Creates an overall pocket on the left */
+            text-indent: -2rem;
+            /* 2. Pulls ONLY the first line backward into that pocket */
+            margin-bottom: 1.25rem;
+            /* 3. Clean separation between different papers */
+            line-height: 1.6;
+            /* 4. Academic readability standard */
+            color: #e2e8f0;
+            /* 5. Adapts nicely to dark themes */
+        }
+
+        /* Optional styling to make paper titles stand out if you don't use links */
+        .citation-title {
+            font-style: italic;
+        }
+
+        /* Optional styling to highlight DOI or link blocks */
+        .citation-doi {
+            font-family: monospace;
+            font-size: 0.85em;
+            color: #3b82f6;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -198,12 +224,21 @@
         <!-- 4. PUBLICATIONS -->
         <div class="parallax-group bg-img-publications" id="panel-publications">
             <div class="content-card">
-                <h2 class="display-5 fw-bold text-white text-center mb-4">Relevant Publications</h2>
-                <ul class="list-unstyled text-muted d-flex flex-column gap-3 mb-0">
-                    <li><strong class="text-white">Publication:</strong> Title</li>
-                    <li><strong class="text-white">Publication:</strong> Title</li>
-                    <li><strong class="text-white">Publication:</strong> Title</li>
-                </ul>
+                <h2 class="display-5 fw-bold text-white text-center mb-4">Recent Prints</h2>
+
+                <div class="citation-entry">
+                    <strong>Vance, A.</strong>, Jenkins, S., & Chen, M. (2026). <span
+                        class="citation-title">Hardware-Accelerated 3D
+                        Viewports for
+                        Decentralized Document Delivery.</span> Journal of Web Systems, 14(2), 112-125. <a href="#"
+                        class="citation-doi">https://doi.org</a>
+                </div>
+
+                <div class="citation-entry">
+                    Rostova, E. (2025). <span class="citation-title">Mitigating Cross-Origin Blocking via Fluid Layer
+                        Encapsulation.</span> ACM Systems Processing, 8(4), 45-59. <a href="#"
+                        class="citation-doi">https://doi.org</a>
+                </div>
             </div>
         </div>
 
