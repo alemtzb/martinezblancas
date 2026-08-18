@@ -128,30 +128,73 @@
             z-index: 10;
         }
 
-        .citation-entry {
-            padding-left: 2rem;
-            /* 1. Creates an overall pocket on the left */
-            text-indent: -2rem;
-            /* 2. Pulls ONLY the first line backward into that pocket */
-            margin-bottom: 1.25rem;
-            /* 3. Clean separation between different papers */
-            line-height: 1.6;
-            /* 4. Academic readability standard */
-            color: #e2e8f0;
-            /* 5. Adapts nicely to dark themes */
+        /* 1. PAGINATION CAROUSEL TRAY
+      Turns the citation area into a hidden side-scrolling container */
+        .citation-slider {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* Optional styling to make paper titles stand out if you don't use links */
+        /* Hide the scrollbar track inside the card */
+        .citation-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* 2. THE PAGE PACKETS
+      Forces each group of papers to stay exactly 100% wide inside the card */
+        .citation-page {
+            flex: 0 0 100%;
+            width: 100%;
+            scroll-snap-align: start;
+        }
+
+        /* 3. Academic hanging indent rules from earlier */
+        .citation-entry {
+            padding-left: 2rem;
+            text-indent: -2rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            text-align: left;
+            /* Ensures citations align left while card stays centered */
+        }
+
         .citation-title {
             font-style: italic;
         }
 
-        /* Optional styling to highlight DOI or link blocks */
         .citation-doi {
             font-family: monospace;
             font-size: 0.85em;
             color: #3b82f6;
             text-decoration: none;
+        }
+
+        /* 4. THE DOT CONTROLLER TRAY */
+        .pagination-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .dot-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #475569;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .dot-indicator.active {
+            background-color: #3b82f6;
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -223,73 +266,104 @@
 
         <!-- 4. PUBLICATIONS -->
         <div class="parallax-group bg-img-publications" id="panel-publications">
-            <div class="content-card">
-                <h2 class="display-5 fw-bold text-white text-center mb-4">Select Publications</h2>
+            <div class="layer-foreground">
+                <div class="content-card">
+                    <h2 class="display-5 fw-bold text-white text-center mb-4">Select Publications</h2>
 
-                <div class="citation-entry">
-                    Martorell, C., <strong>Martínez-Blancas A</strong>. (2025). <span
-                        class="citation-title">Plant–Soil Feedbacks Contribute to 
-                        Coexistence When Considering Multispecies Assemblages over 
-                        a Soil Depth Gradient.</span> Ecology, 106(3): e70052. <a href="https://doi.org/10.1002/ecy.70052"
-                        class="citation-doi">DOI</a>
+                    <!-- The Carousel Slider Tray -->
+                    <div class="citation-slider" id="citationSlider">
+
+                        <!-- PAGE 1 -->
+                        <div class="citation-page">
+                            <div class="citation-entry">
+                                Martorell, C., <strong>Martínez-Blancas A</strong>. (2025). <span
+                                    class="citation-title">Plant–Soil
+                                    Feedbacks Contribute to
+                                    Coexistence When Considering Multispecies Assemblages over
+                                    a Soil Depth Gradient.</span> Ecology, 106(3): e70052. <a
+                                    href="https://doi.org/10.1002/ecy.70052" class="citation-doi">DOI</a>
+                            </div>
+                            <div class="citation-entry">
+                                <strong>Martínez-Blancas A.</strong>, Bender A., Zepeda V.,
+                                McGuire R., Tabares O., Amarasekare P., Mastretta-Yanes A.,
+                                Miriti M., Santos A.M., Vaz M.C. (2022).
+                                <span class="citation-title">
+                                    Surviving Racism and Sexism in Academia: Sharing Experiences,
+                                    Insights, and Perspectives.
+                                </span>
+                                The Bulletin of the Ecological Society of America, e2033.
+                            </div>
+
+                            <div class="citation-entry">
+                                <strong>Martínez-Blancas A.</strong>, Belastegui I.X., Martorell C. (2022).
+                                <span class="citation-title">Species alliances and hidden niche dimensions drive species
+                                    clustering
+                                    along a hydric gradient in a semiarid grassland.</span>
+                                Ecology Letters, 25: 2651-2662.
+                            </div>
+
+                            <div class="citation-entry">
+                                McGuire R.M., Hayashi K.T., Yan X., Caritá Vaz M., Cinoglu D., Cowen M.C.,
+                                <strong>Martínez-Blancas A.</strong>, Sullivan L.L., Vazquez-Morales S.,
+                                Kandlikar G.S. (2022).
+                                <span class="citation-title">EcoEvoApps: Interactive Apps for Theoretical Models in
+                                    Ecology and
+                                    Evolutionary Biology.</span>
+                                Ecology and Evolution, 12: e9556.
+                            </div>
+
+                            <div class="citation-entry">
+                                Martorell C., García-Meza D., <strong>Martínez-Blancas A.</strong>,
+                                Vazquez C., Zepeda V. (2022).
+                                <span class="citation-title">Grasslands of the Chocholteca Region: An Undervalued Plant
+                                    Diversity
+                                    World Record.</span>
+                                In: <em>A Study of the Biodiversity of the State of Oaxaca</em>.
+                                Ed. Alejandro Dávila. CONABIO, Oaxaca, México.
+                            </div>
+                        </div>
+
+                        <!-- PAGE 2 -->
+                        <div class="citation-page">
+                            <div class="citation-entry">
+                                Martorell C., <strong>Martínez-Blancas A.</strong>, García-Meza D. (2021).
+                                <span class="citation-title">Plant Soil Feedbacks Depend on Drought Stress, Functional
+                                    Group and
+                                    Evolutionary Relatedness in a Semiarid Grassland.</span>
+                                Ecology, 102: e03499.
+                            </div>
+
+                            <div class="citation-entry">
+                                <strong>Martínez-Blancas A.</strong>, Martorell C. (2020).
+                                <span class="citation-title">Changes in Niche Differentiation and Environmental
+                                    Filtering over a
+                                    Hydric Stress Gradient.</span>
+                                Journal of Plant Ecology, 13: 185-194.
+                            </div>
+
+                            <div class="citation-entry">
+                                <strong>Martínez-Blancas A.</strong>, Paz H., Salazar G.A., Martorell C. (2018).
+                                <span class="citation-title">Related Plant Species Respond Similarly to Chronic
+                                    Anthropogenic
+                                    Disturbance: Implications for Conservation Decision-Making.</span>
+                                Journal of Applied Ecology, 55: 1860-1870.
+                            </div>
+
+                            <div class="citation-entry">
+                                Martorell C., Zepeda V., <strong>Martínez-Blancas A.</strong>,
+                                García-Meza D., Pedraza F. (2017).
+                                <span class="citation-title">A Diversity World Record in a Grassland at Oaxaca,
+                                    México.</span>
+                                Botanical Sciences, 95: 1-7.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination-dots" id="dotTray">
+                        <span class="dot-indicator active" data-slide="0"></span>
+                        <span class="dot-indicator" data-slide="1"></span>
+                    </div>
+
                 </div>
-                <div class="citation-entry">
-    <strong>Martínez-Blancas A.</strong>, Bender A., Zepeda V.,
-    McGuire R., Tabares O., Amarasekare P., Mastretta-Yanes A.,
-    Miriti M., Santos A.M., Vaz M.C. (2022).
-    <span class="citation-title">
-        Surviving Racism and Sexism in Academia: Sharing Experiences,
-        Insights, and Perspectives.
-    </span>
-    The Bulletin of the Ecological Society of America, e2033.
-</div>
-`
-                <div class="citation-entry">
-    <strong>Martínez-Blancas A.</strong>, Belastegui I.X., Martorell C. (2022).
-    <span class="citation-title">Species alliances and hidden niche dimensions drive species clustering along a hydric gradient in a semiarid grassland.</span>
-    Ecology Letters, 25: 2651-2662.
-</div>
-
-<div class="citation-entry">
-    McGuire R.M., Hayashi K.T., Yan X., Caritá Vaz M., Cinoglu D., Cowen M.C.,
-    <strong>Martínez-Blancas A.</strong>, Sullivan L.L., Vazquez-Morales S.,
-    Kandlikar G.S. (2022).
-    <span class="citation-title">EcoEvoApps: Interactive Apps for Theoretical Models in Ecology and Evolutionary Biology.</span>
-    Ecology and Evolution, 12: e9556.
-</div>
-
-<div class="citation-entry">
-    Martorell C., García-Meza D., <strong>Martínez-Blancas A.</strong>,
-    Vazquez C., Zepeda V. (2022).
-    <span class="citation-title">Grasslands of the Chocholteca Region: An Undervalued Plant Diversity World Record.</span>
-    In: <em>A Study of the Biodiversity of the State of Oaxaca</em>.
-    Ed. Alejandro Dávila. CONABIO, Oaxaca, México.
-</div>
-
-<div class="citation-entry">
-    Martorell C., <strong>Martínez-Blancas A.</strong>, García-Meza D. (2021).
-    <span class="citation-title">Plant Soil Feedbacks Depend on Drought Stress, Functional Group and Evolutionary Relatedness in a Semiarid Grassland.</span>
-    Ecology, 102: e03499.
-</div>
-
-<div class="citation-entry">
-    <strong>Martínez-Blancas A.</strong>, Martorell C. (2020).
-    <span class="citation-title">Changes in Niche Differentiation and Environmental Filtering over a Hydric Stress Gradient.</span>
-    Journal of Plant Ecology, 13: 185-194.
-</div>
-
-<div class="citation-entry">
-    <strong>Martínez-Blancas A.</strong>, Paz H., Salazar G.A., Martorell C. (2018).
-    <span class="citation-title">Related Plant Species Respond Similarly to Chronic Anthropogenic Disturbance: Implications for Conservation Decision-Making.</span>
-    Journal of Applied Ecology, 55: 1860-1870.
-</div>
-
-<div class="citation-entry">
-    Martorell C., Zepeda V., <strong>Martínez-Blancas A.</strong>,
-    García-Meza D., Pedraza F. (2017).
-    <span class="citation-title">A Diversity World Record in a Grassland at Oaxaca, México.</span>
-    Botanical Sciences, 95: 1-7.
-</div>
             </div>
         </div>
 
@@ -387,6 +461,33 @@
 
         // Fire up the continuous layout tracking frame
         window.requestAnimationFrame(updateFrame);
+
+        // Local Card Pagination Logic
+        const cardSlider = document.getElementById('citationSlider');
+        const indicators = document.querySelectorAll('.dot-indicator');
+
+        // A. DOT CLICK HANDLER: Slides the inner card content when a dot is clicked
+        indicators.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const pageIndex = parseInt(dot.getAttribute('data-slide'));
+                cardSlider.scrollTo({
+                    left: cardSlider.offsetWidth * pageIndex,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // B. INNER SCROLL TRACKER: Updates active dot styling when a user swipes or clicks
+        cardSlider.addEventListener('scroll', () => {
+            const pageIndex = Math.round(cardSlider.scrollLeft / cardSlider.offsetWidth);
+            indicators.forEach((dot, idx) => {
+                if (idx === pageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
     </script>
 </body>
 
